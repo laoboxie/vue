@@ -4,6 +4,7 @@ const zlib = require('zlib')
 const rollup = require('rollup')
 const uglify = require('uglify-js')
 
+//确保存在dist文件夹
 if (!fs.existsSync('dist')) {
   fs.mkdirSync('dist')
 }
@@ -11,6 +12,7 @@ if (!fs.existsSync('dist')) {
 let builds = require('./config').getAllBuilds()
 
 // filter builds via command line arg
+// 通过运行脚本的参数来过滤构建
 if (process.argv[2]) {
   const filters = process.argv[2].split(',')
   builds = builds.filter(b => {
@@ -18,11 +20,13 @@ if (process.argv[2]) {
   })
 } else {
   // filter out weex builds by default
+  // 默认构建排除weex
   builds = builds.filter(b => {
     return b.output.file.indexOf('weex') === -1
   })
 }
 
+// 开始构建
 build(builds)
 
 function build (builds) {

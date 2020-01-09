@@ -66,9 +66,11 @@ function initProps (vm: Component, propsOptions: Object) {
   const props = vm._props = {}
   // cache prop keys so that future props updates can iterate using Array
   // instead of dynamic object key enumeration.
+  // 缓存prop的键，以便将来的prop更新时可以使用Array而不是动态对象键枚举进行迭代。
   const keys = vm.$options._propKeys = []
   const isRoot = !vm.$parent
   // root instance props should be converted
+  // 根实例的props应该被转换
   if (!isRoot) {
     toggleObserving(false)
   }
@@ -102,6 +104,8 @@ function initProps (vm: Component, propsOptions: Object) {
     // static props are already proxied on the component's prototype
     // during Vue.extend(). We only need to proxy props defined at
     // instantiation here.
+    // 在Vue.extend()期间，静态props已经代理在组件的原型上
+    // 我们只需要代理定义在此处的实例化。
     if (!(key in vm)) {
       proxy(vm, `_props`, key)
     }
@@ -195,6 +199,8 @@ function initComputed (vm: Component, computed: Object) {
     // component-defined computed properties are already defined on the
     // component prototype. We only need to define computed properties defined
     // at instantiation here.
+    // 组件定义的计算属性已经在组件原型定义过。 
+    // 我们只需要定义在此处实例化定义过的计算属性。
     if (!(key in vm)) {
       defineComputed(vm, key, userDef)
     } else if (process.env.NODE_ENV !== 'production') {
@@ -316,6 +322,8 @@ export function stateMixin (Vue: Class<Component>) {
   // flow somehow has problems with directly declared definition object
   // when using Object.defineProperty, so we have to procedurally build up
   // the object here.
+  // flow 不知为什么当使用Object.defineProperty对直接声明的定义对象有问题，
+  // 因此我们必须在程序上进行构建对象。
   const dataDef = {}
   dataDef.get = function () { return this._data }
   const propsDef = {}
