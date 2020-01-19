@@ -221,6 +221,8 @@ export function createPatchFunction (backend) {
       // it should've created a child instance and mounted it. the child
       // component also has set the placeholder vnode's elm.
       // in that case we can just return the element and be done.
+      // 调用init钩子后，如果vnode是子组件，则应创建一个子实例并将其挂载。 
+      // 子组件还设置了占位vnode的elm。 在这种情况下，我们只需返回该元素即可完成。
       if (isDef(vnode.componentInstance)) {
         initComponent(vnode, insertedVnodeQueue)
         if (isTrue(isReactivated)) {

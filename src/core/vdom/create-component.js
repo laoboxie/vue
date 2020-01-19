@@ -119,6 +119,7 @@ export function createComponent (
   const baseCtor = context.$options._base
 
   // plain options object: turn it into a constructor
+  // 将对象转化成一个构造器
   if (isObject(Ctor)) {
     Ctor = baseCtor.extend(Ctor)
   }
@@ -190,6 +191,7 @@ export function createComponent (
   }
 
   // install component management hooks onto the placeholder node
+  // 安装组件管理钩子到占位节点
   installComponentHooks(data)
 
   // return a placeholder vnode

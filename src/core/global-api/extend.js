@@ -45,6 +45,8 @@ export function initExtend (Vue: GlobalAPI) {
     // For props and computed properties, we define the proxy getters on
     // the Vue instances at extension time, on the extended prototype. This
     // avoids Object.defineProperty calls for each instance created.
+    // 对于props和计算属性，我们在扩展原型的扩展时间在Vue实例上定义代理getters。
+    // 这样可以避免为每个创建的实例调用Object.defineProperty。
     if (Sub.options.props) {
       initProps(Sub)
     }
@@ -53,12 +55,14 @@ export function initExtend (Vue: GlobalAPI) {
     }
 
     // allow further extension/mixin/plugin usage
+    // 允许进一步extension/mixin/plugin使用
     Sub.extend = Super.extend
     Sub.mixin = Super.mixin
     Sub.use = Super.use
 
     // create asset registers, so extended classes
     // can have their private assets too.
+    // 创建asset注册器，因此扩展类也可以拥有其私有assets。
     ASSET_TYPES.forEach(function (type) {
       Sub[type] = Super[type]
     })
@@ -70,11 +74,13 @@ export function initExtend (Vue: GlobalAPI) {
     // keep a reference to the super options at extension time.
     // later at instantiation we can check if Super's options have
     // been updated.
+    // 在扩展时间保留对super选项的引用。 稍后在实例化中，我们可以检查Super的选项是否已更新。
     Sub.superOptions = Super.options
     Sub.extendOptions = extendOptions
     Sub.sealedOptions = extend({}, Sub.options)
 
     // cache constructor
+    // 缓存构造函数
     cachedCtors[SuperId] = Sub
     return Sub
   }
