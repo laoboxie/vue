@@ -98,17 +98,20 @@ export function _createElement (
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag)
     if (config.isReservedTag(tag)) {
       // platform built-in elements
+      // 平台内置元素
       vnode = new VNode(
         config.parsePlatformTagName(tag), data, children,
         undefined, undefined, context
       )
     } else if (isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
       // component
+      // 组件
       vnode = createComponent(Ctor, data, context, children, tag)
     } else {
       // unknown or unlisted namespaced elements
       // check at runtime because it may get assigned a namespace when its
       // parent normalizes children
+      // 未知或未列出的命名空间元素在运行时检查，因为当其父项标准化子元素时可能会为其分配一个命名空间
       vnode = new VNode(
         tag, data, children,
         undefined, undefined, context
