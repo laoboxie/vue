@@ -120,6 +120,7 @@ export function createComponent (
   const baseCtor = context.$options._base
 
   // plain options object: turn it into a constructor
+  // 将对象转化成一个构造器
   if (isObject(Ctor)) {
     Ctor = baseCtor.extend(Ctor)
   }
@@ -142,6 +143,8 @@ export function createComponent (
       // return a placeholder node for async component, which is rendered
       // as a comment node but preserves all the raw information for the node.
       // the information will be used for async server-rendering and hydration.
+      // 返回异步组件的占位符节点，该占位符节点呈现为注释节点，但保留该节点的所有原始信息。
+      // 该信息将用于异步服务器渲染和hydration。
       return createAsyncPlaceholder(
         asyncFactory,
         data,
@@ -191,6 +194,7 @@ export function createComponent (
   }
 
   // install component management hooks onto the placeholder node
+  // 安装组件管理钩子到占位节点
   installComponentHooks(data)
 
   // return a placeholder vnode
