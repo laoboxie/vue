@@ -30,6 +30,7 @@ export function initMixin (Vue: Class<Component>) {
     // 防止vue被观察
     vm._isVue = true
     // merge options
+    // 合并配置
     if (options && options._isComponent) {
       // optimize internal component instantiation
       // since dynamic options merging is pretty slow, and none of the
