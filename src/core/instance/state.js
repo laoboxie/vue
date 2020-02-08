@@ -174,6 +174,7 @@ function initComputed (vm: Component, computed: Object) {
   // $flow-disable-line
   const watchers = vm._computedWatchers = Object.create(null)
   // computed properties are just getters during SSR
+  // computed属性在SSR期间只是getter
   const isSSR = isServerRendering()
 
   for (const key in computed) {
@@ -188,6 +189,7 @@ function initComputed (vm: Component, computed: Object) {
 
     if (!isSSR) {
       // create internal watcher for the computed property.
+      // 为computed属性创建内部watcher
       watchers[key] = new Watcher(
         vm,
         getter || noop,

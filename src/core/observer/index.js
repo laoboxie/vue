@@ -34,10 +34,11 @@ export function toggleObserving (value: boolean) {
  * object's property keys into getter/setters that
  * collect dependencies and dispatch updates.
  */
+// 附加到每个被观察对象的观察者类。附加后，观察者将目标对象的属性键转换为收集依赖和派发更新的getter/setter。
 export class Observer {
   value: any;
   dep: Dep;
-  vmCount: number; // number of vms that has this object as root $data
+  vmCount: number; // number of vms that has this object as root $data 将此对象作为根$data的vm数量
 
   constructor (value: any) {
     this.value = value
@@ -60,6 +61,7 @@ export class Observer {
    * getter/setters. This method should only be called when
    * value type is Object.
    */
+  // 遍历每个属性并将它们转换为getter/setter。仅当值类型为“对象”时才应调用此方法。
   walk (obj: Object) {
     const keys = Object.keys(obj)
     for (let i = 0; i < keys.length; i++) {
@@ -70,6 +72,7 @@ export class Observer {
   /**
    * Observe a list of Array items.
    */
+  // 观察数组项列表
   observeArray (items: Array<any>) {
     for (let i = 0, l = items.length; i < l; i++) {
       observe(items[i])
@@ -83,6 +86,7 @@ export class Observer {
  * Augment an target Object or Array by intercepting
  * the prototype chain using __proto__
  */
+// 通过使用__proto__截取原型链来增强目标对象或数组
 function protoAugment (target, src: Object, keys: any) {
   /* eslint-disable no-proto */
   target.__proto__ = src
@@ -93,6 +97,7 @@ function protoAugment (target, src: Object, keys: any) {
  * Augment an target Object or Array by defining
  * hidden properties.
  */
+// 通过定义隐藏属性来增强目标对象或数组。
 /* istanbul ignore next */
 function copyAugment (target: Object, src: Object, keys: Array<string>) {
   for (let i = 0, l = keys.length; i < l; i++) {
@@ -195,6 +200,7 @@ export function defineReactive (
  * triggers change notification if the property doesn't
  * already exist.
  */
+// 在对象上设置属性。 添加新属性，如果该属性尚不存在，则触发更改通知。
 export function set (target: Array<any> | Object, key: any, val: any): any {
   if (process.env.NODE_ENV !== 'production' &&
     (isUndef(target) || isPrimitive(target))
