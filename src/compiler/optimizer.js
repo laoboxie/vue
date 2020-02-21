@@ -41,6 +41,9 @@ function markStatic (node: ASTNode) {
     // do not make component slot content static. this avoids
     // 1. components not able to mutate slot nodes
     // 2. static slot content fails for hot-reloading
+    // 不要将组件插槽内容设为静态。这样可以避免
+    // 1、无法改变插槽节点的组件
+    // 2、静态插槽内容无法热重新加载
     if (
       !isPlatformReservedTag(node.tag) &&
       node.tag !== 'slot' &&
@@ -75,6 +78,8 @@ function markStaticRoots (node: ASTNode, isInFor: boolean) {
     // For a node to qualify as a static root, it should have children that
     // are not just static text. Otherwise the cost of hoisting out will
     // outweigh the benefits and it's better off to just always render it fresh.
+    // 要使节点符合静态根的条件，它应该有不只是静态文本的子节点。
+    // 否则，吊装的成本将超过效益，最好还是让它重新渲染。
     if (node.static && node.children.length && !(
       node.children.length === 1 &&
       node.children[0].type === 3
