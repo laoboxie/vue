@@ -151,6 +151,7 @@ export function defineReactive (
   }
 
   // cater for pre-defined getter/setters
+  // 迎合预定义的getter/setter
   const getter = property && property.get
   if (!getter && arguments.length === 2) {
     val = obj[key]

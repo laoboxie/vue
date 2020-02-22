@@ -127,6 +127,7 @@ function initData (vm: Component) {
     )
   }
   // proxy data on instance
+  // 在实例上代理data
   const keys = Object.keys(data)
   const props = vm.$options.props
   const methods = vm.$options.methods
@@ -151,7 +152,7 @@ function initData (vm: Component) {
       proxy(vm, `_data`, key)
     }
   }
-  // observe data
+  // 对data进行observe
   observe(data, true /* asRootData */)
 }
 

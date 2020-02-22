@@ -36,7 +36,7 @@ export default class Dep {
 
   notify () {
     // stabilize the subscriber list first
-    // 首先稳定订户列表
+    // 首先稳定订阅者列表
     const subs = this.subs.slice()
     for (let i = 0, l = subs.length; i < l; i++) {
       subs[i].update()
